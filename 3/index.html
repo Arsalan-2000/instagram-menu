@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#fff5e6">
+<title>بستنی فیروزه | منوی بستنی و پالودما</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Lalezar&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+:root {
+  --cream: #fff8ee;
+  --cream-soft: #fff3e0;
+  --pink-soft: #ffe0ec;
+  --pink: #ff6b9d;
+  --pink-deep: #e74c8f;
+  --mint: #b8f0d3;
+  --mint-deep: #5fc9a3;
+  --lavender: #d4c5f9;
+  --lavender-deep: #9b7de8;
+  --yellow-soft: #fff3b0;
+  --yellow-deep: #f7c948;
+  --sky-soft: #c4e8f0;
+  --sky-deep: #5fb3d4;
+  --text-primary: #4a2c5e;
+  --text-secondary: #8b6f8a;
+  --text-muted: #b5a0b5;
+  --card-bg: rgba(255, 255, 255, 0.65);
+  --card-border: rgba(255, 255, 255, 0.9);
+  --shadow-soft: 0 8px 24px -4px rgba(155, 125, 200, 0.18);
+  --shadow-bubble: 0 4px 16px -2px rgba(255, 107, 157, 0.25);
+  --radius-sm: 16px;
+  --radius-md: 24px;
+  --radius-lg: 32px;
+  --radius-xl: 40px;
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+body {
+  font-family: 'Vazirmatn', system-ui, sans-serif;
+  color: var(--text-primary);
+  background:
+    radial-gradient(circle at 20% 10%, var(--pink-soft) 0%, transparent 40%),
+    radial-gradient(circle at 80% 0%, var(--lavender) 0%, transparent 40%),
+    radial-gradient(circle at 50% 100%, var(--mint) 0%, transparent 50%),
+    linear-gradient(180deg, var(--cream) 0%, var(--cream-soft) 100%);
+  background-attachment: fixed;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================
+   PHONE CONTAINER
+   ============================================ */
+.phone {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 932px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+@media (min-width: 500px) {
+  .phone {
+    border-radius: 44px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin: 20px;
+    box-shadow: 0 20px 60px -10px rgba(155, 125, 200, 0.3);
+  }
+}
+
+/* ============================================
+   ANIMATED BUBBLE BACKGROUND
+   ============================================ */
+.bubbles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3) 60%, transparent);
+  box-shadow: inset 0 -4px 10px rgba(255, 107, 157, 0.15);
+  animation: floatUp linear infinite;
+  opacity: 0.7;
+}
+
+.bubble.emoji-bubble {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), rgba(255, 209, 220, 0.4) 60%);
+  filter: drop-shadow(0 4px 12px rgba(255, 107, 157, 0.25));
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(110vh) translateX(0) scale(0.4);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+    transform: translateY(95vh) translateX(10px) scale(0.6);
+  }
+  50% {
+    transform: translateY(50vh) translateX(-15px) scale(1);
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-20vh) translateX(20px) scale(0.4);
+    opacity: 0;
+  }
+}
+
+@keyframes sway {
+  0%, 100% { transform: translateY(0) translateX(0) rotate(0); }
+  25% { transform: translateY(-15px) translateX(10px) rotate(5deg); }
+  50% { transform: translateY(-5px) translateX(-8px) rotate(-3deg); }
+  75% { transform: translateY(-20px) translateX(5px) rotate(2deg); }
+}
+
+/* Slow drifting blobs */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.6;
+  animation: blobDrift 20s ease-in-out infinite;
+}
+
+@keyframes blobDrift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -20px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 30px) scale(0.9);
+  }
+}
+
+/* ============================================
+   HEADER (clock + brand)
+   ============================================ */
+.header {
+  position: relative;
+  z-index: 10;
+  padding: calc(env(safe-area-inset-top) + 18px) 20px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink) 0%, var(--pink-deep) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 8px 20px -4px rgba(255, 107, 157, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  position: relative;
+  animation: logoBob 4s ease-in-out infinite;
+}
+
+@keyframes logoBob {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-4px) rotate(3deg); }
+}
+
+.brand-logo::after {
+  /* highlight dot */
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  filter: blur(1px);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-family: 'Lalezar', 'Vazirmatn', sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, var(--pink-deep) 0%, var(--lavender-deep) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+
+.brand-sub {
+  font-size: 10.5px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Clock pill */
+.clock-pill {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  padding: 8px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+  box-shadow: var(--shadow-soft);
+  min-width: 110px;
+}
+
+.clock-time {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--pink-deep);
+  font-variant-numeric: tnum;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.clock-time .colon {
+  animation: blink 1s steps(2) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0.3; }
+}
+
+.clock-date {
+  font-size: 9.5px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  line-height: 1.2;
+}
+
+/* ============================================
+   HERO CLOCK (big central display)
+   ============================================ */
+.hero-clock {
+  position: relative;
+  z-index: 5;
+  margin: 0 20px 16px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 240, 245, 0.7) 100%);
+  border: 1.5px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-clock::before {
+  /* glow accent */
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -10%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(255, 107, 157, 0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-time-block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.hero-time {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--pink-deep);
+  font-variant-numeric: tnum;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.hero-time .colon {
+  animation: blink 1s steps(2) infinite;
+  margin: 0 1px;
+}
+
+.hero-time .ampm {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-right: 6px;
+}
+
+.hero-date {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.hero-clock-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--yellow-soft) 0%, var(--yellow-deep) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  box-shadow: 0 4px 12px -2px rgba(247, 201, 72, 0.5);
+  animation: clockSpin 8s linear infinite;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.hero-clock-icon::before {
+  /* clock hands */
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 16px;
+  background: var(--text-primary);
+  top: 9px;
+  left: 50%;
+  transform-origin: bottom center;
+  animation: hourHand 60s linear infinite;
+  border-radius: 2px;
+}
+
+.hero-clock-icon::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background: var(--pink-deep);
+  top: 5px;
+  left: calc(50% - 1px);
+  transform-origin: bottom center;
+  animation: minHand 5s linear infinite;
+  border-radius: 2px;
+}
+
+@keyframes clockSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes hourHand {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes minHand {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   CATEGORIES
+   ============================================ */
+.categories {
+  position: relative;
+  z-index: 8;
+  padding: 4px 0 14px;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.categories::-webkit-scrollbar { display: none; }
+
+.categories-inner {
+  display: flex;
+  gap: 8px;
+  padding: 0 20px;
+}
+
+.cat-pill {
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s var(--ease-bounce);
+  white-space: nowrap;
+  box-shadow: 0 2px 6px -1px rgba(155, 125, 200, 0.1);
+}
+
+.cat-pill .cat-emoji {
+  font-size: 14px;
+}
+
+.cat-pill:active {
+  transform: scale(0.92);
+}
+
+.cat-pill.active {
+  background: linear-gradient(135deg, var(--pink) 0%, var(--pink-deep) 100%);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 6px 14px -2px rgba(255, 107, 157, 0.5);
+}
+
+/* ============================================
+   MENU
+   ============================================ */
+.menu {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px 16px 24px;
+  position: relative;
+  z-index: 2;
+  scrollbar-width: none;
+}
+
+.menu::-webkit-scrollbar { display: none; }
+
+.menu-section {
+  margin-bottom: 14px;
+}
+
+.menu-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-primary);
+  padding: 4px 4px 10px;
+}
+
+.menu-section-title::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to left, transparent, rgba(255, 107, 157, 0.2));
+  border-radius: 2px;
+}
+
+.menu-section-count {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  padding: 2px 9px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+}
+
+/* ============================================
+   CARD (very rounded / bubble style)
+   ============================================ */
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  position: relative;
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: all 0.25s var(--ease-bounce);
+  overflow: hidden;
+}
+
+.card:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 12px -2px rgba(155, 125, 200, 0.2);
+}
+
+.card::before {
+  /* subtle glow on the side */
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 100px;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 107, 157, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.card-emoji {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fff 0%, #ffe6f0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px -4px rgba(255, 107, 157, 0.25), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+  position: relative;
+  transition: transform 0.3s var(--ease-bounce);
+}
+
+.card:active .card-emoji {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.card-emoji::after {
+  /* glossy highlight */
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 14px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  filter: blur(2px);
+}
+
+.card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 3px;
+}
+
+.card-name {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.2px;
+  line-height: 1.3;
+}
+
+.card-fav {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 107, 157, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.25s var(--ease-bounce);
+}
+
+.card-fav:active {
+  transform: scale(0.85);
+}
+
+.card-fav svg {
+  width: 14px;
+  height: 14px;
+  color: var(--text-muted);
+  transition: all 0.25s;
+}
+
+.card-fav.active {
+  background: var(--pink-soft);
+  border-color: var(--pink);
+}
+
+.card-fav.active svg {
+  color: var(--pink-deep);
+  fill: var(--pink-deep);
+  transform: scale(1.15);
+}
+
+.card-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-weight: 500;
+}
+
+.card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-price {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.price-value {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--pink-deep);
+  font-variant-numeric: tnum;
+}
+
+.price-unit {
+  font-size: 9.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.card-add-btn {
+  padding: 6px 14px 6px 12px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--pink) 0%, var(--pink-deep) 100%);
+  color: #fff;
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 4px 10px -2px rgba(255, 107, 157, 0.4);
+  transition: all 0.2s var(--ease-bounce);
+}
+
+.card-add-btn:active {
+  transform: scale(0.92);
+}
+
+.card-add-btn.added {
+  background: linear-gradient(135deg, var(--mint-deep) 0%, var(--mint) 100%);
+  box-shadow: 0 4px 10px -2px rgba(95, 201, 163, 0.4);
+}
+
+.card-add-btn .plus-icon {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.card-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.3px;
+  background: linear-gradient(135deg, var(--yellow-soft) 0%, var(--yellow-deep) 100%);
+  color: #6b4a00;
+  margin-bottom: 2px;
+}
+
+.card-tag.special {
+  background: linear-gradient(135deg, var(--lavender) 0%, var(--lavender-deep) 100%);
+  color: #fff;
+}
+
+.card-tag.new {
+  background: linear-gradient(135deg, var(--mint) 0%, var(--mint-deep) 100%);
+  color: #fff;
+}
+
+/* ============================================
+   TOAST
+   ============================================ */
+.toast {
+  position: absolute;
+  top: calc(env(safe-area-inset-top) + 110px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-30px);
+  z-index: 200;
+  background: linear-gradient(135deg, var(--pink) 0%, var(--pink-deep) 100%);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 8px 24px -4px rgba(255, 107, 157, 0.5);
+  opacity: 0;
+  transition: all 0.35s var(--ease-bounce);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================
+   HEART BURST
+   ============================================ */
+.heart-burst {
+  position: fixed;
+  pointer-events: none;
+  z-index: 150;
+}
+
+.heart-particle {
+  position: absolute;
+  font-size: 16px;
+  opacity: 0;
+  animation: heartBurst 0.8s var(--ease-smooth) forwards;
+}
+
+@keyframes heartBurst {
+  0% { opacity: 1; transform: translate(0, 0) scale(0.5); }
+  100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(1.5); }
+}
+
+/* ============================================
+   RIPPLE
+   ============================================ */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 107, 157, 0.3);
+  transform: scale(0);
+  animation: rippleEffect 0.6s var(--ease-smooth);
+  pointer-events: none;
+}
+
+@keyframes rippleEffect {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* ============================================
+   DRIPS at top (melting effect)
+   ============================================ */
+.drips {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.drip {
+  position: absolute;
+  top: -10px;
+  width: 8px;
+  height: 30px;
+  background: linear-gradient(180deg, var(--pink-soft) 0%, var(--pink) 100%);
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  animation: dripFall 4s ease-in infinite;
+  opacity: 0.6;
+}
+
+@keyframes dripFall {
+  0%, 100% { transform: translateY(0); height: 30px; }
+  50% { transform: translateY(15px); height: 35px; }
+}
+
+/* ============================================
+   FLOATING MENU FAB (optional cart button)
+   ============================================ */
+.fab {
+  position: absolute;
+  bottom: calc(env(safe-area-inset-bottom) + 18px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  background: linear-gradient(135deg, var(--pink) 0%, var(--pink-deep) 100%);
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 28px -6px rgba(255, 107, 157, 0.55);
+  transition: all 0.3s var(--ease-bounce);
+}
+
+.fab:active {
+  transform: translateX(-50%) scale(0.95);
+}
+
+.fab.hidden {
+  transform: translateX(-50%) translateY(120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fab-count {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  min-width: 18px;
+  text-align: center;
+}
+
+.fab-count.bump {
+  animation: countBump 0.4s var(--ease-bounce);
+}
+
+@keyframes countBump {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+}
+
+.empty-state-icon {
+  font-size: 56px;
+  margin-bottom: 12px;
+  animation: logoBob 3s ease-in-out infinite;
+  display: inline-block;
+}
+
+.empty-state-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.empty-state-sub {
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+</style>
+</head>
+<body>
+
+<div class="phone" id="phone">
+
+  <!-- Animated background -->
+  <div class="bubbles" id="bubbles"></div>
+
+  <!-- Drips at top -->
+  <div class="drips" id="drips"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <div class="brand-logo">🍨</div>
+      <div class="brand-text">
+        <div class="brand-name">بستنی فیروزه</div>
+        <div class="brand-sub">پالودما و بستنی خانگی</div>
+      </div>
+    </div>
+    <div class="clock-pill">
+      <div class="clock-time" id="miniTime">
+        <span id="miniH">۰۰</span><span class="colon">:</span><span id="miniM">۰۰</span>
+      </div>
+      <div class="clock-date" id="miniDate">در حال بارگذاری...</div>
+    </div>
+  </header>
+
+  <!-- Hero clock display -->
+  <div class="hero-clock">
+    <div class="hero-time-block">
+      <div class="hero-time" id="heroTime">
+        <span id="heroH">۰۰</span><span class="colon">:</span><span id="heroM">۰۰</span><span class="colon">:</span><span id="heroS">۰۰</span>
+      </div>
+      <div class="hero-date" id="heroDate">در حال بارگذاری...</div>
+    </div>
+    <div class="hero-clock-icon"></div>
+  </div>
+
+  <!-- Categories -->
+  <nav class="categories">
+    <div class="categories-inner" id="categoriesInner"></div>
+  </nav>
+
+  <!-- Menu -->
+  <main class="menu" id="menu"></main>
+
+  <!-- FAB -->
+  <button class="fab hidden" id="fab">
+    <span> سفارش‌ها</span>
+    <span class="fab-count" id="fabCount">۰</span>
+  </button>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <span id="toastText">متن</span>
+  </div>
+
+</div>
+
+<script>
+// ============================================
+// MENU DATA
+// ============================================
+const menuData = {
+  categories: [
+    { id: 'all', name: 'همه', emoji: '🍨' },
+    { id: 'classic', name: 'بستنی کلاسیک', emoji: '🍦' },
+    { id: 'fruit', name: 'بستنی میوه‌ای', emoji: '🍓' },
+    { id: 'faloodah', name: 'پالودما', emoji: '🍧' },
+    { id: 'shake', name: 'شیک و اسموتی', emoji: '🥤' },
+    { id: 'drink', name: 'نوشیدنی', emoji: '🧃' }
+  ],
+  items: [
+    { id: 1, cat: 'classic', name: 'بستنی زعفرانی سنتی', desc: 'با شیر تازه، زعفران قائنات و گلاب', price: 45000, emoji: '🍦', tag: 'ویژه', tagType: 'special' },
+    { id: 2, cat: 'classic', name: 'بستنی وانیلی فرانسوی', desc: 'دانه وانیل ماداگاسکار با طعم نرم و خامه‌ای', price: 40000, emoji: '🍨', tag: 'محبوب' },
+    { id: 3, cat: 'classic', name: 'بستنی شکلاتی بلژیکی', desc: 'کاکائوی تلخ ۷۰٪ با تکه‌های شکلات تیره', price: 55000, emoji: '🍫' },
+    { id: 4, cat: 'classic', name: 'بستنی پسته اکبری', desc: 'پسته اکبری کرم‌رنگ با کمی زعفران و گلاب', price: 65000, emoji: '🍨', tag: 'نفیس', tagType: 'special' },
+    { id: 5, cat: 'fruit', name: 'بستنی موز با شکلات', desc: 'موز رسیده، سس شکلات تلخ و تکه‌های بادام خرد شده', price: 50000, emoji: '🍌', tag: 'جدید', tagType: 'new' },
+    { id: 6, cat: 'fruit', name: 'بستنی توت‌فرنگی', desc: 'توت‌فرنگی تازه با خامه فرم گرفته', price: 48000, emoji: '🍓' },
+    { id: 7, cat: 'fruit', name: 'بستنی انبه استوایی', desc: 'انبه تایلندی رسیده با شربت نارگیل', price: 58000, emoji: '🥭' },
+    { id: 8, cat: 'fruit', name: 'بستنی هلو و ماست', desc: 'هلو و ماست یونانی، کمی عسل طبیعی', price: 46000, emoji: '🍑' },
+    { id: 9, cat: 'faloodah', name: 'پالودمای ایرانی', desc: 'نشا، رشته، شربت گل سرخ و آبلیمو تازه', price: 60000, emoji: '🍧', tag: 'اصیل', tagType: 'special' },
+    { id: 10, cat: 'faloodah', name: 'پالودمای زعفرانی', desc: 'پالودمای سنتی با بستنی زعفرانی', price: 68000, emoji: '🍨' },
+    { id: 11, cat: 'faloodah', name: 'پالودمای انار', desc: 'دانه‌های انار تازه با شربت گل سرخ', price: 65000, emoji: '🍧', tag: 'ویژه', tagType: 'special' },
+    { id: 12, cat: 'shake', name: 'شیک بستنی موز', desc: 'بستنی وانیلی، موز رسیده، شیر', price: 55000, emoji: '🥤' },
+    { id: 13, cat: 'shake', name: 'شیک شکلات فندق', desc: 'کاکائو، فندق خرد شده', price: 58000, emoji: '🥤', tag: 'پرفروش' },
+    { id: 14, cat: 'shake', name: 'اسموتی توت‌فرنگی', desc: 'توت‌فرنگی، ماست و کمی عسل طبیعی', price: 52000, emoji: '🍓' },
+    { id: 15, cat: 'shake', name: 'اسموتی میوه‌های فصل', desc: 'ترکیب میوه‌های فصل تازه با ماست', price: 60000, emoji: '🥭', tag: 'جدید', tagType: 'new' },
+    { id: 16, cat: 'drink', name: 'دوغ محلی با نعنا', desc: 'دوغ خانگی گازدار با نعنا تازه', price: 25000, emoji: '🥛' },
+    { id: 17, cat: 'drink', name: 'آب‌انار طبیعی', desc: 'آب‌انار تازه ۱۰۰٪ با کمی', price: 35000, emoji: '🧃' },
+    { id: 18, cat: 'drink', name: 'لیموناد بهارنارنج', desc: 'آب‌لیمو، عسل طبیعی', price: 38000, emoji: '🍋' },
+    { id: 19, cat: 'drink', name: 'شربت زعفران و بادام هندی', desc: 'زعفران، بادام هندی خرد شده و گلاب', price: 42000, emoji: '🧃', tag: 'خنک' }
+  ]
+};
+
+// State
+const state = {
+  favorites: new Set(),
+  activeCategory: 'all',
+  orderCount: 0
+};
+
+// ============================================
+// PERSIAN HELPERS
+// ============================================
+const faDigits = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+function toFa(n) {
+  return String(n).replace(/\d/g, d => faDigits[d]);
+}
+function formatPrice(n) {
+  return toFa(n.toLocaleString('en-US'));
+}
+
+// ============================================
+// LIVE CLOCK + DATE
+// ============================================
+function updateClock() {
+  const now = new Date();
+  
+  // Persian time formatter
+  const timeFormatter = new Intl.DateTimeFormat('fa-IR', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hourCycle: 'h23'
+  });
+  
+  // Persian date formatter (Jalali calendar)
+  const dateFormatter = new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+  
+  // Short date
+  const shortDateFormatter = new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short'
+  });
+  
+  // Get parts
+  const h = toFa(String(now.getHours()).padStart(2, '0'));
+  const m = toFa(String(now.getMinutes()).padStart(2, '0'));
+  const s = toFa(String(now.getSeconds()).padStart(2, '0'));
+  
+  // Update hero clock
+  document.getElementById('heroH').textContent = h;
+  document.getElementById('heroM').textContent = m;
+  document.getElementById('heroS').textContent = s;
+  document.getElementById('heroDate').textContent = dateFormatter.format(now);
+  
+  // Update mini clock in header
+  document.getElementById('miniH').textContent = h;
+  document.getElementById('miniM').textContent = m;
+  document.getElementById('miniDate').textContent = shortDateFormatter.format(now);
+}
+
+// Update every second
+setInterval(updateClock, 1000);
+updateClock();
+
+// ============================================
+// BUBBLE BACKGROUND GENERATION
+// ============================================
+const bubbleColors = [
+  'radial-gradient(circle at 30% 30%, rgba(255, 209, 220, 0.8), rgba(255, 192, 220, 0.3) 60%, transparent)',
+  'radial-gradient(circle at 30% 30%, rgba(184, 240, 211, 0.8), rgba(184, 240, 211, 0.3) 60%, transparent)',
+  'radial-gradient(circle at 30% 30%, rgba(212, 197, 249, 0.8), rgba(212, 197, 249, 0.3) 60%, transparent)',
+  'radial-gradient(circle at 30% 30%, rgba(255, 243, 176, 0.8), rgba(255, 243, 176, 0.3) 60%, transparent)',
+  'radial-gradient(circle at 30% 30%, rgba(196, 232, 240, 0.8), rgba(196, 232, 240, 0.3) 60%, transparent)'
+];
+
+const bubbleEmojis = ['🍨', '🍦', '🍧', '🍓', '🥭', '🍫', '🥤', '🧁'];
+
+function generateBubbles() {
+  const container = document.getElementById('bubbles');
+  const phone = document.getElementById('phone');
+  const w = phone.clientWidth;
+  const h = phone.clientHeight;
+  
+  // Create slow drifting blobs (background layer)
+  for (let i = 0; i < 4; i++) {
+    const blob = document.createElement('div');
+    blob.className = 'blob';
+    const size = 80 + Math.random() * 120;
+    blob.style.width = size + 'px';
+    blob.style.height = size + 'px';
+    blob.style.left = (Math.random() * 100) + '%';
+    blob.style.top = (Math.random() * 100) + '%';
+    blob.style.background = bubbleColors[i % bubbleColors.length];
+    blob.style.animationDuration = (15 + Math.random() * 15) + 's';
+    blob.style.animationDelay = (-Math.random() * 10) + 's';
+    container.appendChild(blob);
+  }
+  
+  // Create floating bubbles
+  for (let i = 0; i < 15; i++) {
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    const size = 20 + Math.random() * 60;
+    bubble.style.width = size + 'px';
+    bubble.style.height = size + 'px';
+    bubble.style.left = (Math.random() * 100) + '%';
+    bubble.style.background = bubbleColors[i % bubbleColors.length];
+    bubble.style.animationDuration = (15 + Math.random() * 25) + 's';
+    bubble.style.animationDelay = (-Math.random() * 20) + 's';
+    container.appendChild(bubble);
+  }
+  
+  // Create emoji bubbles (larger, with emoji inside)
+  for (let i = 0; i < 6; i++) {
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble emoji-bubble';
+    const size = 40 + Math.random() * 40;
+    bubble.style.width = size + 'px';
+    bubble.style.height = size + 'px';
+    bubble.style.left = (Math.random() * 100) + '%';
+    bubble.style.fontSize = (size * 0.5) + 'px';
+    bubble.textContent = bubbleEmojis[Math.floor(Math.random() * bubbleEmojis.length)];
+    bubble.style.animationDuration = (20 + Math.random() * 20) + 's';
+    bubble.style.animationDelay = (-Math.random() * 30) + 's';
+    container.appendChild(bubble);
+  }
+  
+  // Create drips
+  const drips = document.getElementById('drips');
+  const dripColors = ['#ffd1dc', '#c8f0d4', '#d4c5f9', '#fff3b0', '#c4e8f0'];
+  for (let i = 0; i < 8; i++) {
+    const drip = document.createElement('div');
+    drip.className = 'drip';
+    drip.style.left = (i * 14 + Math.random() * 10) + '%';
+    drip.style.animationDelay = (Math.random() * 4) + 's';
+    drip.style.animationDuration = (3 + Math.random() * 3) + 's';
+    drip.style.background = `linear-gradient(180deg, ${dripColors[i % dripColors.length]} 0%, ${dripColors[(i+2) % dripColors.length]} 100%)`;
+    drip.style.width = (5 + Math.random() * 4) + 'px';
+    drip.style.height = (25 + Math.random() * 20) + 'px';
+    drips.appendChild(drip);
+  }
+}
+
+// ============================================
+// RENDER CATEGORIES
+// ============================================
+function renderCategories() {
+  const wrap = document.getElementById('categoriesInner');
+  wrap.innerHTML = '';
+  menuData.categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-pill' + (state.activeCategory === cat.id ? ' active' : '');
+    btn.innerHTML = `<span class="cat-emoji">${cat.emoji}</span>${cat.name}`;
+    btn.addEventListener('click', () => {
+      state.activeCategory = cat.id;
+      renderCategories();
+      renderMenu();
+    });
+    wrap.appendChild(btn);
+  });
+}
+
+// ============================================
+// RENDER MENU
+// ============================================
+function renderMenu() {
+  const wrap = document.getElementById('menu');
+  
+  let items = menuData.items;
+  if (state.activeCategory !== 'all') {
+    items = items.filter(i => i.cat === state.activeCategory);
+  }
+  
+  if (items.length === 0) {
+    wrap.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">🍦</div>
+        <div class="empty-state-text">موردی یافت نشد</div>
+        <div class="empty-state-sub">به زودی طعم‌های جدید اضافه می‌شوند</div>
+      </div>
+    `;
+    return;
+  }
+  
+  // If "all", group by category
+  if (state.activeCategory === 'all') {
+    wrap.innerHTML = '';
+    menuData.categories.forEach(cat => {
+      if (cat.id === 'all') return;
+      const groupItems = items.filter(i => i.cat === cat.id);
+      if (groupItems.length === 0) return;
+      
+      const section = document.createElement('div');
+      section.className = 'menu-section';
+      section.innerHTML = `
+        <div class="menu-section-title">
+          <span>${cat.emoji}</span>
+          <span>${cat.name}</span>
+          <span class="menu-section-count">${toFa(groupItems.length)} مورد</span>
+        </div>
+      `;
+      groupItems.forEach(item => section.appendChild(createCard(item)));
+      wrap.appendChild(section);
+    });
+  } else {
+    // Single section
+    wrap.innerHTML = '';
+    const section = document.createElement('div');
+    section.className = 'menu-section';
+    groupItems.forEach(item => section.appendChild(createCard(item)));
+    wrap.appendChild(section);
+  }
+}
+
+// ============================================
+// CREATE CARD
+// ============================================
+function createCard(item) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.id = item.id;
+  
+  const isFav = state.favorites.has(item.id);
+  let tagHtml = '';
+  if (item.tag) {
+    const tagClass = item.tagType ? item.tagType : '';
+    tagHtml = `<div class="card-tag ${tagClass}">${item.tag}</div>`;
+  }
+  
+  card.innerHTML = `
+    <div class="card-emoji">${item.emoji}</div>
+    <div class="card-info">
+      ${tagHtml}
+      <div class="card-name-row">
+        <div class="card-name">${item.name}</div>
+        <button class="card-fav ${isFav ? 'active' : ''}" data-action="fav" aria-label="افزودن به علاقه‌مندی">
+          <svg viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="card-desc">${item.desc}</div>
+      <div class="card-bottom">
+        <div class="card-price">
+          <span class="price-value">${formatPrice(item.price)}</span>
+          <span class="price-unit">تومان</span>
+        </div>
+        <button class="card-add-btn" data-action="add">
+          <span class="plus-icon">+</span>
+          <span>افزودن</span>
+        </button>
+      </div>
+    </div>
+  `;
+  
+  // Attach interactions
+  const favBtn = card.querySelector('[data-action="fav"]');
+  favBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleFav(item, favBtn, e);
+    rippleEffect(e);
+  });
+  
+  const addBtn = card.querySelector('[data-action="add"]');
+  addBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    handleAdd(item, addBtn, e);
+    rippleEffect(e);
+  });
+  
+  return card;
+}
+
+// ============================================
+// FAV TOGGLE
+// ============================================
+function toggleFav(item, btn, e) {
+  if (state.favorites.has(item.id)) {
+    state.favorites.delete(item.id);
+    btn.classList.remove('active');
+    btn.querySelector('svg').setAttribute('fill', 'none');
+    showToast('از علاقه‌مندی حذف شد', '💔');
+  } else {
+    state.favorites.add(item.id);
+    btn.classList.add('active');
+    btn.querySelector('svg').setAttribute('fill', 'currentColor');
+    heartBurst(btn, e);
+    showToast('به علاقه‌مندی اضافه شد', '❤️');
+  }
+}
+
+// ============================================
+// HANDLE ADD
+// ============================================
+function handleAdd(item, btn, e) {
+  state.orderCount++;
+  const fab = document.getElementById('fab');
+  const fabCount = document.getElementById('fabCount');
+  
+  fab.classList.remove('hidden');
+  fabCount.textContent = toFa(state.orderCount);
+  fabCount.classList.remove('bump');
+  void fabCount.offsetWidth;
+  fabCount.classList.add('bump');
+  
+  // Visual feedback on button
+  btn.classList.add('added');
+  const originalContent = btn.innerHTML;
+  btn.innerHTML = '<span>✓</span><span>افزوده شد</span>';
+  setTimeout(() => {
+    btn.classList.remove('added');
+    btn.innerHTML = originalContent;
+  }, 1200);
+  
+  // Haptic feedback
+  if (navigator.vibrate) navigator.vibrate(15);
+  
+  showToast(`${item.name} به سفارش اضافه شد`, '🍨');
+}
+
+// FAB click - just show toast
+document.getElementById('fab').addEventListener('click', () => {
+  showToast(`تا کنون ${toFa(state.orderCount)} مورد سفارش داده‌اید`, '🛒');
+});
+
+// ============================================
+// HEART BURST
+// ============================================
+function heartBurst(element, e) {
+  const rect = element.getBoundingClientRect();
+  const burst = document.createElement('div');
+  burst.className = 'heart-burst';
+  burst.style.left = (rect.left + rect.width / 2) + 'px';
+  burst.style.top = (rect.top + rect.height / 2) + 'px';
+  
+  for (let i = 0; i < 8; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart-particle';
+    heart.textContent = ['❤️', '💕', '✨', '💖'][i % 4];
+    const angle = (i / 8) * Math.PI * 2;
+    const distance = 30 + Math.random() * 20;
+    heart.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+    heart.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+    heart.style.animationDelay = (i * 0.02) + 's';
+    burst.appendChild(heart);
+  }
+  
+  document.body.appendChild(burst);
+  setTimeout(() => burst.remove(), 1000);
+}
+
+// ============================================
+// TOAST
+// ============================================
+let toastTimer = null;
+function showToast(text, icon) {
+  const toast = document.getElementById('toast');
+  toast.innerHTML = icon ? `<span>${icon}</span><span>${text}</span>` : `<span>${text}</span>`;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// ============================================
+// RIPPLE EFFECT
+// ============================================
+function rippleEffect(e, target) {
+  const el = target || e.currentTarget;
+  const rect = el.getBoundingClientRect();
+  const ripple = document.createElement('span');
+  ripple.className = 'ripple';
+  const size = Math.max(rect.width, rect.height);
+  ripple.style.width = ripple.style.height = size + 'px';
+  
+  // Calculate position
+  let x = 0, y = 0;
+  if (e.clientX !== undefined) {
+    x = e.clientX - rect.left - size / 2;
+    y = e.clientY - rect.top - size / 2;
+  } else {
+    x = rect.width / 2 - size / 2;
+    y = rect.height / 2 - size / 2;
+  }
+  ripple.style.left = x + 'px';
+  ripple.style.top = y + 'px';
+  
+  el.style.position = el.style.position || 'relative';
+  el.style.overflow = 'hidden';
+  el.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 600);
+}
+
+// ============================================
+// INIT
+// ============================================
+function init() {
+  generateBubbles();
+  renderCategories();
+  renderMenu();
+}
+
+window.addEventListener('load', init);
+if (document.readyState === 'complete') init();
+</script>
+
+</body>
+</html>
