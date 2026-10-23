@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090a09">
+<title>آتش — منوی کباب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#090a09;--panel:#111311;--line:#292b26;--gold:#f5b928;--ember:#ff632d;--muted:#9a9d96;--white:#f6f3ea}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -10%,#292015 0,transparent 44%),var(--bg);color:var(--white);font-family:Vazirmatn,system-ui,sans-serif;min-height:100vh;padding-bottom:28px}
+button{font:inherit;cursor:pointer;color:inherit}.app{max-width:580px;margin:auto;overflow:hidden;position:relative}
+.hero{height:290px;position:relative;isolation:isolate;overflow:hidden;background:#15120e}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--bg) 0%,rgba(9,10,9,.25) 45%,rgba(0,0,0,.15)),radial-gradient(ellipse at 72% 25%,#f36c252b,transparent 24%),radial-gradient(ellipse at 35% 65%,#f5b92820,transparent 35%),linear-gradient(135deg,#21150e,#090a09 70%);z-index:-1;transform:scale(1.02);animation:heroBreath 14s ease-in-out infinite alternate}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.35),transparent 70%);z-index:-1}
+.topline{display:flex;justify-content:space-between;align-items:center;padding:24px 22px 0}
+.brand{display:flex;align-items:center;gap:9px;font-weight:900;font-size:25px;letter-spacing:-1px}.brand-mark{display:grid;place-items:center;width:38px;height:38px;border:1px solid #f5b92880;border-radius:13px;color:var(--gold);font-size:22px;transform:rotate(-7deg);box-shadow:0 0 22px #f5b92814}
+.kicker{font-size:11px;color:#d8c9a6;margin-top:2px;font-weight:500}
+.hero-copy{position:absolute;bottom:22px;right:23px;left:23px;display:flex;align-items:end;justify-content:space-between}
+.eyebrow{color:var(--gold);font-size:11px;font-weight:800;letter-spacing:1.5px}.hero h1{font-size:31px;line-height:1.4;margin:3px 0 0;font-weight:900;letter-spacing:-1px}.hero p{margin:3px 0 0;color:#d1d0c8;font-size:12px}
+.open-pill{border:1px solid #f5b92865;background:#0b0c0bbd;border-radius:99px;padding:8px 11px;font-size:10px;color:#f5d47a;display:flex;gap:6px;align-items:center;white-space:nowrap;backdrop-filter:blur(10px)}.dot{width:6px;height:6px;border-radius:50%;background:#70dc8a;box-shadow:0 0 10px #70dc8a}
+main{padding:0 15px}
+.section-head{display:flex;align-items:end;justify-content:space-between;margin:8px 3px 15px}.section-head h2{margin:0;font-size:20px;font-weight:900}.section-head p{margin:3px 0 0;color:var(--muted);font-size:11px}.count{font-size:11px;color:var(--gold);border:1px solid #f5b92845;border-radius:99px;padding:5px 9px}
+.filters{display:flex;gap:8px;overflow-x:auto;padding:2px 1px 14px;scrollbar-width:none}.filters::-webkit-scrollbar{display:none}.filter{flex:0 0 auto;border:1px solid #33352f;background:#10120f;border-radius:99px;padding:10px 15px;font-size:12px;color:#b8bab2;transition:.25s;position:relative;overflow:hidden}.filter.active{color:#16130b;background:var(--gold);border-color:var(--gold);font-weight:800;box-shadow:0 5px 20px #f5b92822}.filter:active{transform:scale(.95)}
+.menu{display:grid;gap:12px}.item{display:grid;grid-template-columns:124px minmax(0,1fr);gap:13px;padding:10px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(125deg,#141613,#0d0f0d 70%);position:relative;overflow:hidden;transition:transform .25s,border-color .25s,background .25s;animation:rise .55s both;isolation:isolate}.item:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 0 50%,#f5b9280c,transparent 55%);z-index:-1;pointer-events:none}.item:active{transform:scale(.985)}.item:hover{border-color:#6a5120}.item.hidden{display:none}.photo{height:128px;border-radius:15px;overflow:hidden;position:relative;background:#222}.dish-art{height:100%;width:100%;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 50%,#30291c,#151713 65%,#0c0d0b)}.dish-art:before{content:'';width:76%;height:56%;border:3px solid #aaa18a;border-radius:50%;background:radial-gradient(ellipse at 50% 40%,#d9b76a 0 10%,#7d4524 12% 22%,#241b12 24% 36%,#7d4524 38% 44%,#171914 46%);box-shadow:0 5px 15px #000,0 0 0 4px #514b3d;transform:rotate(-12deg)}.dish-art span{position:absolute;z-index:1;font-size:25px;color:#f5b928;filter:drop-shadow(0 0 8px #f5b92870);top:14px;right:16px}.dish-art i,.dish-art b{position:absolute;z-index:1;width:55%;height:5px;border-radius:100%;background:linear-gradient(90deg,#6b3219,#d08a43,#472114);transform:rotate(-18deg);box-shadow:0 7px 0 #6e381d,0 -7px 0 #85451f}.dish-art b{transform:rotate(18deg);width:43%;background:linear-gradient(90deg,#a25b27,#e3b65b,#512719)}.item:hover .dish-art:before{transform:rotate(-7deg) scale(1.05);transition:transform .5s}.photo:after{content:"";position:absolute;inset:50% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.5))}.tag{position:absolute;top:7px;right:7px;z-index:1;background:#0a0b09d9;border:1px solid #f5b92870;border-radius:8px;padding:4px 6px;font-size:9px;color:var(--gold);backdrop-filter:blur(8px)}
+.info{min-width:0;display:flex;flex-direction:column;padding:3px 0 1px}.name-line{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.name{font-size:15px;font-weight:900;margin:0;line-height:1.5}.mini-icon{font-size:13px}.desc{font-size:10.5px;line-height:1.9;color:#a6aaa1;margin:5px 0 9px;max-width:220px}.bottom{display:flex;align-items:center;justify-content:space-between;gap:7px;margin-top:auto}.price{font-weight:900;color:var(--gold);font-size:14px;white-space:nowrap}.price small{font-size:9px;font-weight:500;color:#c1a65b;margin-right:2px}.add{width:36px;height:36px;flex:0 0 36px;border:1px solid #f5b9288a;background:#15140e;border-radius:13px;color:var(--gold);font-size:22px;display:grid;place-items:center;transition:transform .2s,background .2s,color .2s,box-shadow .2s;box-shadow:0 0 15px #f5b9280a}.add:active{transform:scale(.86) rotate(90deg)}.add.added{background:var(--gold);color:#16130b;box-shadow:0 0 18px #f5b92855}.added-num{font-size:12px;font-weight:900}
+.item.featured{border-color:#5a471f}.item.featured:after{content:"پیشنهاد آتش";position:absolute;left:-1px;top:-1px;background:linear-gradient(120deg,#f5b928,#f28a24);color:#211608;font-size:9px;font-weight:900;padding:5px 9px;border-radius:0 0 10px 0}
+.empty{display:none;text-align:center;color:var(--muted);padding:35px 10px;font-size:13px}.empty.show{display:block}
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#f5b928;color:#1a1509;padding:11px 16px;border-radius:14px;font-weight:800;font-size:12px;box-shadow:0 12px 35px #0009;transition:.25s;z-index:10;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
+.footer{display:flex;justify-content:center;align-items:center;gap:12px;color:#716e61;font-size:10px;margin:23px 0 8px}.footer:before,.footer:after{content:"";height:1px;width:48px;background:linear-gradient(90deg,transparent,#6e582b)}.footer:after{transform:rotate(180deg)}.flame{color:var(--gold);font-size:16px}
+@keyframes rise{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}@keyframes heroBreath{from{transform:scale(1.02) translateX(0)}to{transform:scale(1.1) translateX(-7px)}}
+@media(min-width:500px){body{padding:25px 0}.app{border:1px solid #25251f;border-radius:30px;box-shadow:0 20px 90px #0009}.hero{border-radius:29px 29px 0 0}.item{grid-template-columns:145px minmax(0,1fr)}.photo{height:135px}}
+@media(max-width:360px){main{padding:0 10px}.item{grid-template-columns:102px minmax(0,1fr);gap:9px;padding:8px;border-radius:18px}.photo{height:120px}.name{font-size:13px}.desc{font-size:10px}.price{font-size:12px}.add{width:32px;height:32px;flex-basis:32px}.hero h1{font-size:27px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="hero">
+  <div class="topline">
+    <div class="brand"><span class="brand-mark">♨</span><div><div>آتش</div><div class="kicker">کباب، با امضای زغال</div></div></div>
+    <div class="open-pill"><span class="dot"></span> گریل روشنه</div>
+  </div>
+  <div class="hero-copy">
+    <div><div class="eyebrow">FIRE • MEAT • MAGIC</div><h1>منوی آتش</h1><p>دودِ زغال، گوشتِ تازه، طعمِ واقعی.</p></div>
+  </div>
+</header>
+<main>
+  <div class="section-head"><div><h2>چی میل داری؟</h2><p>از روی آتش، مستقیم روی میزت</p></div><span class="count" id="count">۶ آیتم</span></div>
+  <nav class="filters" aria-label="دسته‌بندی منو">
+    <button class="filter active" data-filter="all">همه‌ی منو</button>
+    <button class="filter" data-filter="kebab">🔥 کباب‌ها</button>
+    <button class="filter" data-filter="rice">🍚 چلوها</button>
+    <button class="filter" data-filter="special">⭐ ویژه‌ی آتش</button>
+  </nav>
+  <section class="menu" id="menu">
+    <article class="item featured" data-category="kebab special" style="animation-delay:.03s">
+      <div class="photo"><span class="tag">پرفروش</span><div class="dish-art" role="img" aria-label="کباب کوبیده با برنج زعفرانی"><span>♨</span><i></i><b></b></div></div>
+      <div class="info"><div class="name-line"><h3 class="name">کوبیده‌ی دوتایی</h3><span class="mini-icon">👑</span></div><p class="desc">دو سیخ کوبیده‌ی آبدار، گوجه‌ی کبابی و برنج زعفرانی.</p><div class="bottom"><div class="price">۱۸۵٬۰۰۰ <small>تومان</small></div><button class="add" aria-label="افزودن کوبیده به سفارش" data-name="کوبیده‌ی دوتایی">+</button></div></div>
+    </article>
+    <article class="item" data-category="kebab" style="animation-delay:.08s">
+      <div class="photo"><div class="dish-art" role="img" aria-label="کباب برگ"><span>♨</span><i></i><b></b></div></div>
+      <div class="info"><div class="name-line"><h3 class="name">کباب برگ</h3><span class="mini-icon">🔥</span></div><p class="desc">راسته‌ی گوساله، مزه‌دارشده با ادویه‌ی مخصوص آتش.</p><div class="bottom"><div class="price">۲۵۰٬۰۰۰ <small>تومان</small></div><button class="add" aria-label="افزودن کباب برگ به سفارش" data-name="کباب برگ">+</button></div></div>
+    </article>
+    <article class="item" data-category="kebab" style="animation-delay:.13s">
+      <div class="photo"><div class="dish-art" role="img" aria-label="جوجه کباب زعفرانی"><span>♨</span><i></i><b></b></div></div>
+      <div class="info"><div class="name-line"><h3 class="name">جوجه‌ی زعفرانی</h3><span class="mini-icon">🍗</span></div><p class="desc">جوجه‌ی تازه با لیمو و زعفران، نرم و خوش‌عطر.</p><div class="bottom"><div class="price">۲۰۰٬۰۰۰ <small>تومان</small></div><button class="add" aria-label="افزودن جوجه به سفارش" data-name="جوجه‌ی زعفرانی">+</button></div></div>
+    </article>
+    <article class="item" data-category="rice special" style="animation-delay:.18s">
+      <div class="photo"><span class="tag">ویژه</span><div class="dish-art" role="img" aria-label="چلو ماهیچه"><span>♨</span><i></i><b></b></div></div>
+      <div class="info"><div class="name-line"><h3 class="name">چلو ماهیچه</h3><span class="mini-icon">🍖</span></div><p class="desc">ماهیچه‌ی آرام‌پز، برنج ایرانی و عطر کره‌ی محلی.</p><div class="bottom"><div class="price">۳۲۰٬۰۰۰ <small>تومان</small></div><button class="add" aria-label="افزودن چلو ماهیچه به سفارش" data-name="چلو ماهیچه">+</button></div></div>
+    </article>
+    <article class="item" data-category="kebab special" style="animation-delay:.23s">
+      <div class="photo"><div class="dish-art" role="img" aria-label="میکس کباب"><span>♨</span><i></i><b></b></div></div>
+      <div class="info"><div class="name-line"><h3 class="name">میکسِ آتش</h3><span class="mini-icon">⭐</span></div><p class="desc">ترکیب کوبیده، جوجه و برگ؛ برای وقتی انتخاب سخته.</p><div class="bottom"><div class="price">۳۸۰٬۰۰۰ <small>تومان</small></div><button class="add" aria-label="افزودن میکس آتش به سفارش" data-name="میکسِ آتش">+</button></div></div>
+    </article>
+    <article class="item" data-category="rice" style="animation-delay:.28s">
+      <div class="photo"><div class="dish-art" role="img" aria-label="زرشک پلو با مرغ"><span>♨</span><i></i><b></b></div></div>
+      <div class="info"><div class="name-line"><h3 class="name">زرشک‌پلو با مرغ</h3><span class="mini-icon">🍚</span></div><p class="desc">مرغ زعفرانی، برنج ایرانی و زرشک تفت‌داده‌شده.</p><div class="bottom"><div class="price">۱۷۰٬۰۰۰ <small>تومان</small></div><button class="add" aria-label="افزودن زرشک پلو به سفارش" data-name="زرشک‌پلو با مرغ">+</button></div></div>
+    </article>
+  </section>
+  <div class="empty" id="empty">توی این دسته فعلاً چیزی نیست.</div>
+  <div class="footer"><span class="flame">♨</span><span>هر سیخ، یک داستان روی زغال</span></div>
+</main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+const filters=[...document.querySelectorAll('.filter')], items=[...document.querySelectorAll('.item')], count=document.getElementById('count'), empty=document.getElementById('empty'), toast=document.getElementById('toast');
+let toastTimer, quantities={};
+function showToast(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),1900)}
+filters.forEach(btn=>btn.addEventListener('click',()=>{
+  filters.forEach(f=>f.classList.toggle('active',f===btn));
+  const key=btn.dataset.filter;let visible=0;
+  items.forEach(item=>{const show=key==='all'||item.dataset.category.split(' ').includes(key);item.classList.toggle('hidden',!show);if(show)visible++});
+  count.textContent=visible+' آیتم';empty.classList.toggle('show',visible===0);
+}));
+document.querySelectorAll('.add').forEach(btn=>btn.addEventListener('click',()=>{
+  const name=btn.dataset.name;quantities[name]=(quantities[name]||0)+1;
+  btn.classList.add('added');btn.innerHTML='<span class="added-num">'+quantities[name]+'</span>';
+  btn.setAttribute('aria-label','تعداد '+name+': '+quantities[name]);
+  showToast(name+' به سفارش اضافه شد · '+quantities[name]+' عدد');
+  if(navigator.vibrate)navigator.vibrate(12);
+}));
+</script>
+</body>
+</html>
