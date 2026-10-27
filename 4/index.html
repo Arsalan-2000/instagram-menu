@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#1a0f0a">
+<title>قهوه خونه | منوی کافه</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Lalezar&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+:root {
+  --bg-darkest: #0f0805;
+  --bg-dark: #1a0f0a;
+  --bg-card: #251610;
+  --bg-card-hover: #2d1c14;
+  --border: rgba(212, 165, 116, 0.15);
+  --border-strong: rgba(212, 165, 116, 0.4);
+  --cream: #f5e6d3;
+  --cream-soft: #e8d4ba;
+  --caramel: #c9a574;
+  --caramel-bright: #d4a574;
+  --coffee: #6f4e37;
+  --espresso: #3b2417;
+  --foam: #f8f0e8;
+  --accent-gold: #d4a574;
+  --accent-amber: #e6b87d;
+  --accent-flame: #ff8c42;
+  --text-primary: #f5e6d3;
+  --text-secondary: #b8a088;
+  --text-muted: #7a6655;
+  --shadow-deep: 0 12px 32px -8px rgba(0, 0, 0, 0.6);
+  --shadow-warm: 0 8px 24px -6px rgba(212, 165, 116, 0.25);
+  --radius-sm: 14px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-xl: 36px;
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-darkest);
+}
+
+body {
+  font-family: 'Vazirmatn', system-ui, sans-serif;
+  color: var(--text-primary);
+  background:
+    radial-gradient(ellipse at top, rgba(111, 78, 55, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at bottom, rgba(212, 165, 116, 0.08) 0%, transparent 50%),
+    var(--bg-darkest);
+  background-attachment: fixed;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================
+   PHONE CONTAINER
+   ============================================ */
+.phone {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 932px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+@media (min-width: 500px) {
+  .phone {
+    border-radius: 44px;
+    border: 1px solid rgba(212, 165, 116, 0.15);
+    margin: 20px;
+    box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* ============================================
+   SMOKE CANVAS BACKGROUND
+   ============================================ */
+#smokeCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Soft glow at bottom (warmth from coffee) */
+.warm-glow {
+  position: absolute;
+  bottom: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  height: 60%;
+  background: radial-gradient(ellipse at center bottom, rgba(255, 140, 66, 0.12) 0%, rgba(212, 165, 116, 0.05) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  animation: warmPulse 5s ease-in-out infinite;
+}
+
+@keyframes warmPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.header {
+  position: relative;
+  z-index: 10;
+  padding: calc(env(safe-area-inset-top) + 18px) 20px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--coffee) 0%, var(--espresso) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  box-shadow: 0 8px 24px -4px rgba(111, 78, 55, 0.5), inset 0 2px 4px rgba(245, 230, 211, 0.15);
+  overflow: visible;
+}
+
+.brand-logo::after {
+  /* steam from logo cup */
+  content: '';
+  position: absolute;
+  bottom: 70%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background: rgba(245, 230, 211, 0.4);
+  border-radius: 50%;
+  filter: blur(2px);
+  box-shadow:
+    -8px -8px 0 -1px rgba(245, 230, 211, 0.3),
+    8px -8px 0 -1px rgba(245, 230, 211, 0.3),
+    -4px -16px 0 -2px rgba(245, 230, 211, 0.2),
+    4px -16px 0 -2px rgba(245, 230, 211, 0.2);
+  animation: logoSteam 3s ease-in-out infinite;
+}
+
+@keyframes logoSteam {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
+  50% { transform: translateX(-50%) translateY(-8px); opacity: 0.9; }
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand-name {
+  font-family: 'Lalezar', 'Vazirmatn', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, var(--cream) 0%, var(--caramel-bright) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+
+.brand-sub {
+  font-size: 10.5px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(245, 230, 211, 0.04);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-spring);
+  position: relative;
+  color: var(--text-primary);
+}
+
+.icon-btn:active {
+  transform: scale(0.88);
+  background: rgba(212, 165, 116, 0.15);
+}
+
+.icon-btn svg {
+  width: 19px;
+  height: 19px;
+}
+
+.icon-btn .badge {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  background: var(--accent-flame);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  border: 2px solid var(--bg-darkest);
+  transform: scale(0);
+  transition: transform 0.3s var(--ease-spring);
+}
+
+.icon-btn .badge.show { transform: scale(1); }
+.icon-btn .badge.bump { animation: badgeBump 0.4s var(--ease-spring); }
+
+@keyframes badgeBump {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+}
+
+/* ============================================
+   SEARCH BAR
+   ============================================ */
+.search {
+  position: relative;
+  z-index: 9;
+  padding: 0 20px 12px;
+}
+
+.search-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(37, 22, 16, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0 14px;
+  transition: all 0.25s var(--ease-smooth);
+}
+
+.search-field:focus-within {
+  border-color: var(--border-strong);
+  box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.1);
+  background: rgba(45, 28, 20, 0.8);
+}
+
+.search-field svg {
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.search-field input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 14px;
+  padding: 11px 12px;
+  font-weight: 500;
+}
+
+.search-field input::placeholder { color: var(--text-muted); }
+
+.search-clear {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg-darkest);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.search-field.has-text .search-clear { display: flex; }
+
+/* ============================================
+   CATEGORIES
+   ============================================ */
+.categories {
+  position: relative;
+  z-index: 8;
+  padding: 0 0 12px;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.categories::-webkit-scrollbar { display: none; }
+
+.categories-inner {
+  display: flex;
+  gap: 8px;
+  padding: 0 20px;
+}
+
+.cat-pill {
+  flex-shrink: 0;
+  background: rgba(37, 22, 16, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s var(--ease-spring);
+  white-space: nowrap;
+}
+
+.cat-pill .cat-emoji {
+  font-size: 14px;
+  filter: grayscale(0.5);
+  transition: filter 0.3s;
+}
+
+.cat-pill:active { transform: scale(0.92); }
+
+.cat-pill.active {
+  background: linear-gradient(135deg, var(--coffee) 0%, var(--espresso) 100%);
+  color: var(--cream);
+  border-color: var(--caramel);
+  box-shadow: 0 6px 14px -2px rgba(111, 78, 55, 0.6), inset 0 1px 0 rgba(245, 230, 211, 0.2);
+}
+
+.cat-pill.active .cat-emoji {
+  filter: grayscale(0) brightness(1.1);
+}
+
+/* ============================================
+   MENU
+   ============================================ */
+.menu {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px 16px 24px;
+  position: relative;
+  z-index: 2;
+  scrollbar-width: none;
+}
+
+.menu::-webkit-scrollbar { display: none; }
+
+.menu-section {
+  margin-bottom: 16px;
+}
+
+.menu-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--caramel-bright);
+  padding: 6px 4px 12px;
+  letter-spacing: 0.3px;
+}
+
+.menu-section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to left, transparent, var(--border));
+}
+
+.menu-section-count {
+  font-size: 10.5px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  padding: 2px 9px;
+  background: rgba(212, 165, 116, 0.08);
+  border-radius: 999px;
+}
+
+/* ============================================
+   CARD
+   ============================================ */
+.card {
+  background: rgba(37, 22, 16, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  position: relative;
+  box-shadow: var(--shadow-deep);
+  cursor: pointer;
+  transition: all 0.25s var(--ease-spring);
+  overflow: visible;
+}
+
+.card:active {
+  transform: scale(0.98);
+  background: rgba(45, 28, 20, 0.9);
+  border-color: var(--border-strong);
+}
+
+.card-emoji-wrap {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.card-emoji {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--coffee) 0%, var(--espresso) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  box-shadow: 0 6px 16px -4px rgba(111, 78, 55, 0.4), inset 0 2px 4px rgba(245, 230, 211, 0.1);
+  position: relative;
+  transition: transform 0.3s var(--ease-spring);
+}
+
+.card:active .card-emoji {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.card-steam {
+  position: absolute;
+  bottom: 70%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(245, 230, 211, 0.6) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  filter: blur(2px);
+}
+
+.card.steaming .card-steam {
+  animation: cardSteam 1.5s ease-out infinite;
+}
+
+.card.steaming .card-steam:nth-child(2) {
+  animation-delay: 0.3s;
+  left: 35%;
+}
+
+.card.steaming .card-steam:nth-child(3) {
+  animation-delay: 0.6s;
+  left: 65%;
+}
+
+@keyframes cardSteam {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.4);
+  }
+  20% { opacity: 0.8; }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -30px) scale(2.5);
+  }
+}
+
+.card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 3px;
+}
+
+.card-name {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--cream);
+  letter-spacing: -0.2px;
+  line-height: 1.3;
+}
+
+.card-fav {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(245, 230, 211, 0.04);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.25s var(--ease-spring);
+}
+
+.card-fav:active { transform: scale(0.85); }
+
+.card-fav svg {
+  width: 15px;
+  height: 15px;
+  color: var(--text-muted);
+  transition: all 0.25s;
+}
+
+.card-fav.active {
+  background: rgba(255, 140, 66, 0.12);
+  border-color: rgba(255, 140, 66, 0.4);
+}
+
+.card-fav.active svg {
+  color: var(--accent-flame);
+  fill: var(--accent-flame);
+  transform: scale(1.15);
+}
+
+.card-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.3px;
+  background: linear-gradient(135deg, var(--accent-amber) 0%, var(--caramel) 100%);
+  color: var(--espresso);
+  margin-bottom: 2px;
+}
+
+.card-tag.special {
+  background: linear-gradient(135deg, var(--accent-flame) 0%, #d4651b 100%);
+  color: #fff;
+}
+
+.card-tag.new {
+  background: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
+  color: #fff;
+}
+
+.card-desc {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-weight: 500;
+}
+
+.card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-price {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.price-value {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--caramel-bright);
+  font-variant-numeric: tnum;
+}
+
+.price-unit {
+  font-size: 9.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.card-add-btn {
+  padding: 7px 14px 7px 12px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent-amber) 0%, var(--caramel) 100%);
+  color: var(--espresso);
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 4px 10px -2px rgba(212, 165, 116, 0.4);
+  transition: all 0.2s var(--ease-spring);
+}
+
+.card-add-btn:active {
+  transform: scale(0.92);
+}
+
+.card-add-btn.added {
+  background: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
+  color: #fff;
+  box-shadow: 0 4px 10px -2px rgba(74, 222, 128, 0.4);
+}
+
+.card-add-btn .plus-icon {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+/* ============================================
+   TOAST
+   ============================================ */
+.toast {
+  position: absolute;
+  top: calc(env(safe-area-inset-top) + 80px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-30px);
+  z-index: 200;
+  background: rgba(37, 22, 16, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-strong);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--shadow-deep);
+  opacity: 0;
+  transition: all 0.35s var(--ease-spring);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================
+   HEART BURST
+   ============================================ */
+.heart-burst {
+  position: fixed;
+  pointer-events: none;
+  z-index: 150;
+}
+
+.heart-particle {
+  position: absolute;
+  font-size: 16px;
+  opacity: 0;
+  animation: heartBurst 0.8s var(--ease-smooth) forwards;
+}
+
+@keyframes heartBurst {
+  0% { opacity: 1; transform: translate(0, 0) scale(0.5); }
+  100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(1.5); }
+}
+
+/* ============================================
+   RIPPLE
+   ============================================ */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(212, 165, 116, 0.3);
+  transform: scale(0);
+  animation: rippleEffect 0.6s var(--ease-smooth);
+  pointer-events: none;
+}
+
+@keyframes rippleEffect {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* ============================================
+   FAB
+   ============================================ */
+.fab {
+  position: absolute;
+  bottom: calc(env(safe-area-inset-bottom) + 18px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  background: linear-gradient(135deg, var(--accent-amber) 0%, var(--caramel) 100%);
+  color: var(--espresso);
+  border: none;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 28px -6px rgba(212, 165, 116, 0.5);
+  transition: all 0.3s var(--ease-spring);
+}
+
+.fab:active {
+  transform: translateX(-50%) scale(0.95);
+}
+
+.fab.hidden {
+  transform: translateX(-50%) translateY(120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fab-count {
+  background: rgba(59, 36, 23, 0.25);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  min-width: 18px;
+  text-align: center;
+}
+
+.fab-count.bump { animation: countBump 0.4s var(--ease-spring); }
+
+@keyframes countBump {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--text-secondary);
+}
+
+.empty-state-icon {
+  font-size: 64px;
+  margin-bottom: 14px;
+  display: inline-block;
+  animation: cupBob 3s ease-in-out infinite;
+}
+
+@keyframes cupBob {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-6px) rotate(3deg); }
+}
+
+.empty-state-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.empty-state-sub {
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+/* Floating coffee bean decorations */
+.bean {
+  position: absolute;
+  width: 16px;
+  height: 22px;
+  background: radial-gradient(ellipse at 30% 30%, var(--coffee) 0%, var(--espresso) 100%);
+  border-radius: 50%;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bean::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, transparent 45%, rgba(0,0,0,0.4) 48%, rgba(0,0,0,0.4) 52%, transparent 55%);
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+
+<div class="phone" id="phone">
+
+  <!-- Smoke canvas background -->
+  <canvas id="smokeCanvas"></canvas>
+  <div class="warm-glow"></div>
+
+  <!-- Decorative coffee beans (subtle) -->
+  <div class="bean" style="top: 15%; left: 8%; transform: rotate(35deg);"></div>
+  <div class="bean" style="top: 45%; right: 5%; transform: rotate(-20deg);"></div>
+  <div class="bean" style="top: 70%; left: 12%; transform: rotate(60deg);"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <div class="brand-logo">☕</div>
+      <div class="brand-text">
+        <div class="brand-name">قهوه خونه</div>
+        <div class="brand-sub">کافه اصیل، از سال ۱۳۸۵</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" id="favBtn" aria-label="علاقه‌مندی‌ها">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        <span class="badge" id="favBadge">۰</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Search -->
+  <div class="search">
+    <div class="search-field" id="searchField">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" id="searchInput" placeholder="جستجوی نوشیدنی..." autocomplete="off">
+      <div class="search-clear" id="searchClear">✕</div>
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <nav class="categories">
+    <div class="categories-inner" id="categoriesInner"></div>
+  </nav>
+
+  <!-- Menu -->
+  <main class="menu" id="menu"></main>
+
+  <!-- FAB -->
+  <button class="fab hidden" id="fab">
+    <span>سفارش‌ها</span>
+    <span class="fab-count" id="fabCount">۰</span>
+  </button>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <span id="toastText">متن</span>
+  </div>
+
+</div>
+
+<script>
+// ============================================
+// MENU DATA
+// ============================================
+const menuData = {
+  categories: [
+    { id: 'all', name: 'همه', emoji: '📋' },
+    { id: 'hot', name: 'قهوه داغ', emoji: '☕' },
+    { id: 'cold', name: 'قهوه سرد', emoji: '🧊' },
+    { id: 'shake', name: 'شیک و فراپه', emoji: '🥤' },
+    { id: 'tea', name: 'چای و دمنوش', emoji: '🍵' }
+  ],
+  items: [
+    { id: 1, cat: 'hot', name: 'اسپرسو سینگل', desc: 'یک شات اسپرسو خالص با دانه‌های عربیکا برزیل', price: 35000, emoji: '☕', tag: 'کلاسیک' },
+    { id: 2, cat: 'hot', name: 'دوبل اسپرسو', desc: 'دو شات اسپرسو قوی با کرمای غلیظ روی سطح', price: 45000, emoji: '☕' },
+    { id: 3, cat: 'hot', name: 'کاپوچینو', desc: 'اسپرسو با شیر بخارپز و فوم نرم وانیلی', price: 55000, emoji: '☕', tag: 'پرفروش' },
+    { id: 4, cat: 'hot', name: 'کافه لاته', desc: 'اسپرسو با شیر بخارپز و لایه نازک فوم هنری', price: 60000, emoji: '☕' },
+    { id: 5, cat: 'hot', name: 'موکا', desc: 'اسپرسو با شیر، شکلات تلخ و خامه طبیعی', price: 65000, emoji: '☕', tag: 'محبوب' },
+    { id: 6, cat: 'hot', name: 'آمریکانو', desc: 'اسپرسو رقیق شده با آب جوش، طعم خالص قهوه', price: 50000, emoji: '☕' },
+    { id: 7, cat: 'hot', name: 'ماکیاتو', desc: 'اسپرسو با یک قاشق فوم شیر مزه‌دار', price: 58000, emoji: '☕' },
+    { id: 8, cat: 'hot', name: 'فلت وایت', desc: 'اسپرسو با شیر بخارپز نازک، نسبت ۱ به ۲', price: 60000, emoji: '☕' },
+    { id: 9, cat: 'hot', name: 'افوگاتو', desc: 'یک اسکوپ بستنی وانیلی غوطه‌ور در اسپرسو داغ', price: 70000, emoji: '🍨', tag: 'ویژه', tagType: 'special' },
+    { id: 10, cat: 'hot', name: 'قهوه ترک', desc: 'قهوه آسیاب‌شده در ابزار ترک با کف سنتی', price: 40000, emoji: '☕', tag: 'اصیل', tagType: 'special' },
+    { id: 11, cat: 'hot', name: 'قهوه فرانسه', desc: 'قهوه فرانسوی با شیر بخارپز و کمی وانیل', price: 75000, emoji: '☕' },
+    { id: 12, cat: 'hot', name: 'هات چاکلت', desc: 'شکلات تلخ بلژیکی با شیر گرم و خامه فرم‌گرفته', price: 55000, emoji: '🍫' },
+    { id: 13, cat: 'cold', name: 'آیس لاته', desc: 'اسپرسو سرد با شیر و یخ، روی شیشه‌ای بلند', price: 70000, emoji: '🧊' },
+    { id: 14, cat: 'cold', name: 'آیس آمریکانو', desc: 'اسپرسو سرد با آب و یخ، طعم تازه و خنک', price: 60000, emoji: '🧊' },
+    { id: 15, cat: 'cold', name: 'کولد برو', desc: 'قهوه دم‌سرد ۱۲ ساعته، نرم و کم‌اسیدی', price: 75000, emoji: '🧊', tag: 'جدید', tagType: 'new' },
+    { id: 16, cat: 'cold', name: 'آیس موکا', desc: 'اسپرسو سرد با شیر، شکلات و بستنی وانیلی', price: 72000, emoji: '🧊' },
+    { id: 17, cat: 'shake', name: 'شیک قهوه', desc: 'اسپرسو با بستنی، شیر و خامه فرم‌گرفته', price: 80000, emoji: '🥤', tag: 'پرفروش' },
+    { id: 18, cat: 'shake', name: 'فراپه کارامل', desc: 'قهوه یخ‌زده با سس کارامل و خامه طبیعی', price: 78000, emoji: '🥤', tag: 'محبوب' },
+    { id: 19, cat: 'shake', name: 'فراپه موکا', desc: 'قهوه یخ‌زده با شکلات، شیر و خامه', price: 80000, emoji: '🥤' },
+    { id: 20, cat: 'shake', name: 'شیک بستنی موز', desc: 'بستنی وانیلی، موز رسیده و کمی قهوه', price: 85000, emoji: '🥤', tag: 'جدید', tagType: 'new' },
+    { id: 21, cat: 'tea', name: 'چای سیاه سنتی', desc: 'چای سیاه لاهور با هل', price: 25000, emoji: '🍵' },
+    { id: 22, cat: 'tea', name: 'چای ماسالا', desc: 'چای سیاه با شیر، ادویه ماسالا و عسل', price: 35000, emoji: '🍵' },
+    { id: 23, cat: 'tea', name: 'دمنوش بهار نارنج', desc: 'دمنوش طبیعی بهار نارنج با عطر دلپذیر', price: 30000, emoji: '🍵' },
+    { id: 24, cat: 'tea', name: 'دمنوش بابونه', desc: 'دمنوش آرام‌بخش بابونه با کمی عسل', price: 32000, emoji: '🍵' },
+    { id: 25, cat: 'tea', name: 'هات چای', desc: 'چای سیاه با هل', price: 28000, emoji: '🍵' }
+  ]
+};
+
+// State
+const state = {
+  favorites: new Set(),
+  activeCategory: 'all',
+  searchQuery: '',
+  orderCount: 0
+};
+
+// ============================================
+// PERSIAN HELPERS
+// ============================================
+const faDigits = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+function toFa(n) {
+  return String(n).replace(/\d/g, d => faDigits[d]);
+}
+function formatPrice(n) {
+  return toFa(n.toLocaleString('en-US'));
+}
+
+// ============================================
+// RENDER CATEGORIES
+// ============================================
+function renderCategories() {
+  const wrap = document.getElementById('categoriesInner');
+  wrap.innerHTML = '';
+  menuData.categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-pill' + (state.activeCategory === cat.id ? ' active' : '');
+    btn.innerHTML = `<span class="cat-emoji">${cat.emoji}</span>${cat.name}`;
+    btn.addEventListener('click', () => {
+      state.activeCategory = cat.id;
+      renderCategories();
+      renderMenu();
+    });
+    wrap.appendChild(btn);
+  });
+}
+
+// ============================================
+// RENDER MENU
+// ============================================
+function renderMenu() {
+  const wrap = document.getElementById('menu');
+  let items = menuData.items;
+  if (state.activeCategory !== 'all') {
+    items = items.filter(i => i.cat === state.activeCategory);
+  }
+  if (state.searchQuery) {
+    const q = state.searchQuery.toLowerCase();
+    items = items.filter(i =>
+      i.name.toLowerCase().includes(q) ||
+      i.desc.toLowerCase().includes(q)
+    );
+  }
+
+  if (items.length === 0) {
+    wrap.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">☕</div>
+        <div class="empty-state-text">موردی یافت نشد</div>
+        <div class="empty-state-sub">نوشیدنی دیگری را امتحان کنید</div>
+      </div>
+    `;
+    return;
+  }
+
+  if (state.activeCategory === 'all' && !state.searchQuery) {
+    wrap.innerHTML = '';
+    menuData.categories.forEach(cat => {
+      if (cat.id === 'all') return;
+      const groupItems = items.filter(i => i.cat === cat.id);
+      if (groupItems.length === 0) return;
+      const section = document.createElement('div');
+      section.className = 'menu-section';
+      section.innerHTML = `
+        <div class="menu-section-title">
+          <span>${cat.emoji}</span>
+          <span>${cat.name}</span>
+          <span class="menu-section-count">${toFa(groupItems.length)} مورد</span>
+        </div>
+      `;
+      groupItems.forEach(item => section.appendChild(createCard(item)));
+      wrap.appendChild(section);
+    });
+  } else {
+    wrap.innerHTML = '';
+    const section = document.createElement('div');
+    section.className = 'menu-section';
+    items.forEach(item => section.appendChild(createCard(item)));
+    wrap.appendChild(section);
+  }
+}
+
+// ============================================
+// CREATE CARD
+// ============================================
+function createCard(item) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.id = item.id;
+  const isFav = state.favorites.has(item.id);
+  let tagHtml = '';
+  if (item.tag) {
+    const tagClass = item.tagType ? item.tagType : '';
+    tagHtml = `<div class="card-tag ${tagClass}">${item.tag}</div>`;
+  }
+
+  card.innerHTML = `
+    <div class="card-emoji-wrap">
+      <div class="card-emoji">${item.emoji}</div>
+      <div class="card-steam"></div>
+      <div class="card-steam"></div>
+      <div class="card-steam"></div>
+    </div>
+    <div class="card-info">
+      ${tagHtml}
+      <div class="card-name-row">
+        <div class="card-name">${item.name}</div>
+        <button class="card-fav ${isFav ? 'active' : ''}" data-action="fav" aria-label="افزودن به علاقه‌مندی">
+          <svg viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="card-desc">${item.desc}</div>
+      <div class="card-bottom">
+        <div class="card-price">
+          <span class="price-value">${formatPrice(item.price)}</span>
+          <span class="price-unit">تومان</span>
+        </div>
+        <button class="card-add-btn" data-action="add">
+          <span class="plus-icon">+</span>
+          <span>افزودن</span>
+        </button>
+      </div>
+    </div>
+  `;
+
+  const favBtn = card.querySelector('[data-action="fav"]');
+  favBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleFav(item, favBtn, e);
+    rippleEffect(e);
+  });
+
+  const addBtn = card.querySelector('[data-action="add"]');
+  addBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    handleAdd(item, addBtn, e);
+    rippleEffect(e);
+  });
+
+  // Touch start: trigger steam animation
+  let steamTimer;
+  card.addEventListener('pointerdown', () => {
+    card.classList.add('steaming');
+    steamTimer = setTimeout(() => {
+      card.classList.remove('steaming');
+    }, 3000);
+  });
+  card.addEventListener('pointerup', () => {
+    clearTimeout(steamTimer);
+    setTimeout(() => card.classList.remove('steaming'), 1500);
+  });
+  card.addEventListener('pointerleave', () => {
+    clearTimeout(steamTimer);
+    setTimeout(() => card.classList.remove('steaming'), 1500);
+  });
+
+  return card;
+}
+
+// ============================================
+// FAV TOGGLE
+// ============================================
+function toggleFav(item, btn, e) {
+  if (state.favorites.has(item.id)) {
+    state.favorites.delete(item.id);
+    btn.classList.remove('active');
+    btn.querySelector('svg').setAttribute('fill', 'none');
+    showToast('از علاقه‌مندی حذف شد', '💔');
+  } else {
+    state.favorites.add(item.id);
+    btn.classList.add('active');
+    btn.querySelector('svg').setAttribute('fill', 'currentColor');
+    heartBurst(btn, e);
+    showToast('به علاقه‌مندی اضافه شد', '❤️');
+  }
+  updateFavBadge();
+}
+
+function updateFavBadge() {
+  const badge = document.getElementById('favBadge');
+  const count = state.favorites.size;
+  badge.textContent = toFa(count);
+  if (count > 0) {
+    badge.classList.add('show');
+    badge.classList.remove('bump');
+    void badge.offsetWidth;
+    badge.classList.add('bump');
+  } else {
+    badge.classList.remove('show');
+  }
+}
+
+// ============================================
+// HANDLE ADD
+// ============================================
+function handleAdd(item, btn, e) {
+  state.orderCount++;
+  const fab = document.getElementById('fab');
+  const fabCount = document.getElementById('fabCount');
+  fab.classList.remove('hidden');
+  fabCount.textContent = toFa(state.orderCount);
+  fabCount.classList.remove('bump');
+  void fabCount.offsetWidth;
+  fabCount.classList.add('bump');
+
+  btn.classList.add('added');
+  const originalContent = btn.innerHTML;
+  btn.innerHTML = '<span>✓</span><span>افزوده شد</span>';
+  setTimeout(() => {
+    btn.classList.remove('added');
+    btn.innerHTML = originalContent;
+  }, 1200);
+
+  if (navigator.vibrate) navigator.vibrate(15);
+  showToast(`${item.name} به سفارش اضافه شد`, '☕');
+}
+
+document.getElementById('fab').addEventListener('click', () => {
+  showToast(`تا کنون ${toFa(state.orderCount)} نوشیدنی سفارش داده‌اید`, '🛒');
+});
+
+document.getElementById('favBtn').addEventListener('click', () => {
+  const count = state.favorites.size;
+  if (count === 0) {
+    showToast('هنوز موردی به علاقه‌مندی اضافه نکرده‌اید', '☕');
+  } else {
+    showToast(`${toFa(count)} نوشیدنی در علاقه‌مندی‌های شماست`, '❤️');
+  }
+});
+
+// ============================================
+// HEART BURST
+// ============================================
+function heartBurst(element, e) {
+  const rect = element.getBoundingClientRect();
+  const burst = document.createElement('div');
+  burst.className = 'heart-burst';
+  burst.style.left = (rect.left + rect.width / 2) + 'px';
+  burst.style.top = (rect.top + rect.height / 2) + 'px';
+  for (let i = 0; i < 8; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart-particle';
+    heart.textContent = ['❤️', '💕', '✨', '☕'][i % 4];
+    const angle = (i / 8) * Math.PI * 2;
+    const distance = 30 + Math.random() * 20;
+    heart.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+    heart.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+    heart.style.animationDelay = (i * 0.02) + 's';
+    burst.appendChild(heart);
+  }
+  document.body.appendChild(burst);
+  setTimeout(() => burst.remove(), 1000);
+}
+
+// ============================================
+// TOAST
+// ============================================
+let toastTimer = null;
+function showToast(text, icon) {
+  const toast = document.getElementById('toast');
+  toast.innerHTML = icon ? `<span>${icon}</span><span>${text}</span>` : `<span>${text}</span>`;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// ============================================
+// RIPPLE
+// ============================================
+function rippleEffect(e, target) {
+  const el = target || e.currentTarget;
+  const rect = el.getBoundingClientRect();
+  const ripple = document.createElement('span');
+  ripple.className = 'ripple';
+  const size = Math.max(rect.width, rect.height);
+  ripple.style.width = ripple.style.height = size + 'px';
+  let x = 0, y = 0;
+  if (e.clientX !== undefined) {
+    x = e.clientX - rect.left - size / 2;
+    y = e.clientY - rect.top - size / 2;
+  } else {
+    x = rect.width / 2 - size / 2;
+    y = rect.height / 2 - size / 2;
+  }
+  ripple.style.left = x + 'px';
+  ripple.style.top = y + 'px';
+  el.style.position = el.style.position || 'relative';
+  el.style.overflow = 'hidden';
+  el.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 600);
+}
+
+// ============================================
+// SEARCH
+// ============================================
+const searchInput = document.getElementById('searchInput');
+const searchField = document.getElementById('searchField');
+const searchClear = document.getElementById('searchClear');
+
+searchInput.addEventListener('input', (e) => {
+  state.searchQuery = e.target.value.trim();
+  if (state.searchQuery) {
+    searchField.classList.add('has-text');
+  } else {
+    searchField.classList.remove('has-text');
+  }
+  if (state.activeCategory !== 'all') {
+    state.activeCategory = 'all';
+    renderCategories();
+  }
+  renderMenu();
+});
+
+searchClear.addEventListener('click', () => {
+  searchInput.value = '';
+  state.searchQuery = '';
+  searchField.classList.remove('has-text');
+  renderMenu();
+  searchInput.focus();
+});
+
+// ============================================
+// SMOKE PARTICLE SYSTEM (Canvas)
+// ============================================
+const canvas = document.getElementById('smokeCanvas');
+const ctx = canvas.getContext('2d');
+let canvasW, canvasH;
+let smokeParticles = [];
+let smokeSources = [];
+
+function resizeCanvas() {
+  const dpr = window.devicePixelRatio || 1;
+  const phone = document.getElementById('phone');
+  canvasW = phone.clientWidth;
+  canvasH = phone.clientHeight;
+  canvas.width = canvasW * dpr;
+  canvas.height = canvasH * dpr;
+  canvas.style.width = canvasW + 'px';
+  canvas.style.height = canvasH + 'px';
+  ctx.scale(dpr, dpr);
+  setupSources();
+}
+
+function setupSources() {
+  // Multiple smoke sources at the bottom
+  smokeSources = [
+    { x: canvasW * 0.15, y: canvasH * 0.95, rate: 0.5, maxParticles: 25 },
+    { x: canvasW * 0.45, y: canvasH * 0.92, rate: 0.6, maxParticles: 30 },
+    { x: canvasW * 0.75, y: canvasH * 0.96, rate: 0.5, maxParticles: 25 },
+    { x: canvasW * 0.3, y: canvasH * 0.98, rate: 0.4, maxParticles: 20 },
+    { x: canvasW * 0.65, y: canvasH * 0.99, rate: 0.4, maxParticles: 20 }
+  ];
+}
+
+class SmokeParticle {
+  constructor(x, y) {
+    this.x = x + (Math.random() - 0.5) * 20;
+    this.y = y;
+    this.vx = (Math.random() - 0.5) * 0.4;
+    this.vy = -0.4 - Math.random() * 0.6;
+    this.size = 15 + Math.random() * 20;
+    this.maxSize = this.size * (3 + Math.random() * 2);
+    this.growthRate = 0.3 + Math.random() * 0.3;
+    this.life = 0;
+    this.maxLife = 250 + Math.random() * 150;
+    this.maxOpacity = 0.15 + Math.random() * 0.12;
+    this.opacity = 0;
+    this.turbulence = Math.random() * 0.1;
+    this.turbulenceOffset = Math.random() * Math.PI * 2;
+    this.hue = 30 + Math.random() * 15;
+  }
+
+  update() {
+    this.life++;
+    this.x += this.vx + Math.sin((this.life + this.turbulenceOffset) * 0.05) * this.turbulence;
+    this.y += this.vy;
+    this.vy *= 0.995;
+    this.vx += (Math.random() - 0.5) * 0.02;
+    this.size = Math.min(this.maxSize, this.size + this.growthRate);
+
+    if (this.life < 50) {
+      this.opacity = (this.life / 50) * this.maxOpacity;
+    } else if (this.life > this.maxLife - 80) {
+      this.opacity = ((this.maxLife - this.life) / 80) * this.maxOpacity;
+    } else {
+      this.opacity = this.maxOpacity;
+    }
+
+    return this.life < this.maxLife && this.y > -50;
+  }
+
+  draw(ctx) {
+    const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+    gradient.addColorStop(0, `rgba(245, 230, 211, ${this.opacity})`);
+    gradient.addColorStop(0.5, `rgba(220, 200, 175, ${this.opacity * 0.5})`);
+    gradient.addColorStop(1, `rgba(180, 160, 130, 0)`);
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+function animateSmoke() {
+  ctx.clearRect(0, 0, canvasW, canvasH);
+
+  // Emit new particles from sources
+  smokeSources.forEach(source => {
+    const sourceCount = smokeParticles.filter(p =>
+      Math.abs(p.x - source.x) < 50 && p.y > source.y - 100
+    ).length;
+
+    if (sourceCount < source.maxParticles && Math.random() < source.rate * 0.3) {
+      smokeParticles.push(new SmokeParticle(source.x, source.y));
+    }
+  });
+
+  // Update and draw particles
+  smokeParticles = smokeParticles.filter(p => {
+    const alive = p.update();
+    if (alive) p.draw(ctx);
+    return alive;
+  });
+
+  requestAnimationFrame(animateSmoke);
+}
+
+// ============================================
+// PREVENT CONTEXT MENU
+// ============================================
+document.addEventListener('contextmenu', (e) => {
+  if (e.target.closest('.card')) e.preventDefault();
+});
+
+// ============================================
+// INIT
+// ============================================
+function init() {
+  resizeCanvas();
+  animateSmoke();
+  renderCategories();
+  renderMenu();
+}
+
+window.addEventListener('resize', resizeCanvas);
+window.addEventListener('load', init);
+if (document.readyState === 'complete') init();
+</script>
+
+</body>
+</html>
